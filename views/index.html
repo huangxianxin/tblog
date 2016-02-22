@@ -4,7 +4,7 @@
 		<h4 class="h4">最新发表文章</h4>
 		<div class="side-ask alert alert-warning">
 			<ul id="newBlogs">
-				<% blogs.forEach(function (blog, index) { %>
+				<% if (blogs.length > 0) { blogs.forEach(function (blog, index) { %>
 					<li>
 						<a href="/user/<%- blog.blogUser.userName%>/info">
 							<% var userName =  blog.blogUser.userName; if (userName.length > 8) { %>
@@ -13,7 +13,7 @@
 								<%= userName %>
 							<% } %>
 						</a> 发表 
-						<a href="/blog/<%= blog.blogId %>">
+						<a href="/blog/<%= blog.blogId %>/info">
 							<% var title =  blog.blogTitle; if (title.length > 10) { %>
 								<%= title.substr(0, 10) %>...
 							<% } else { %>
@@ -21,7 +21,9 @@
 							<% } %> 
 						</a>
 					</li>
-				<% }) %>
+				<% })} else{ %>
+				md
+				<% } %>
 			</ul>
 		</div>
 		<!-- 最新标签 -->
@@ -38,19 +40,10 @@
 					本月 · <a href="/users">全部</a>
 				</span>
 			</h2>
-<!-- 			<ol class="widget-top10"> -->
-<!-- 				<li class="text-muted"> -->
-<!-- 					<img src="<%- user.userImageUrl %>" class="avatar-24"> -->
-<!-- 						<a href="/get_user?userId=<%- user.userId%>&accessType=info" class="ellipsis"> -->
-<!-- 							<% var userName = user.userName; if (userName.length > 15) {%> -->
-<!-- 								<%= userName.substr(0, 15) %>... -->
-<!-- 							<% } else { %> -->
-<!-- 								<%= userName %> -->
-<!-- 							<% } %> -->
-<!-- 						</a> -->
-<!-- 						<span class="text-muted pull-right" title="已写 66 篇文章" data-toggle="tooltip" data-placement="top">+66</span> -->
-<!-- 				</li> -->
-<!-- 			</ol> -->
+
+
+
+
 		</div>
 		<!-- 标签榜 -->				
 		<div class="widget-box widget-taguser">
@@ -104,7 +97,7 @@
 							</div>
 							<div class="summary">
 								<h2 class="title">
-									<a href="/blog/<%= blog.blogId %>"> <%= blog.blogTitle %> </a>
+									<a href="/blog/<%= blog.blogId %>/info"> <%= blog.blogTitle %> </a>
 								</h2>
 								<div class="content-show"><%- blog.blogContent %></div>
 							
@@ -165,7 +158,5 @@
 		row_height: 30,
 		max_rows: 6,
 		duration: 1000,
-		prevButton: $('#nt-example1-prev'),
-		nextButton: $('#nt-example1-next')
 	});
 </script>

@@ -22,7 +22,7 @@ function Blog(blog) {
 
 module.exports = Blog;
 
-// 添加用户信息
+// 添加文章信息
 Blog.prototype.save = function (user, callback) {
 	var date = new Date();
 	var times = {
@@ -77,15 +77,28 @@ Blog.get = function(query, callback) {
 	});
 };
 
+// 根据条件获取文章信息
 Blog.getBlog = function(query, callback) {
 	mongodb.open(function(error, db) {
-		db.collection('blogs', function (error, collection) {
-			collection.findOne(query, function (error, documen) {
+		db.collection('blogs', function(error, collection) {
+			collection.findOne(query, function(error, documen) {
 				mongodb.close();
 				//解析 markdown 为 html
 				documen.blogContent = parser.parse(documen.blogContent);
 				callback(null, documen);
 			});
 		})
+	});
+};
+
+// 根据条件删除文章信息
+Blog.delete = function(query, callback) {
+	mongodb.open(function (error, db) {
+		db.collection('blogs', function(error, collection) {
+			collection.remove(query, function(error) {
+				mongodb.close();
+				callback(null);
+			});
+		});
 	});
 };

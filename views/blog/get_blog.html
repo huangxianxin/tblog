@@ -47,10 +47,10 @@
 	</div>
 	<!-- 推荐文章 -->
 	<div class="widget-box widget-taguser">
-		<h2 class="h4 widget-box__title">推荐榜</h2>
+		<h2 class="h4 widget-box__title">文章推荐榜</h2>
 			<ol class="widget-top10">
 				<li class="text-muted">
-					<a href="/get_blog?blogId=<%= blogInfo.blogId %>" class="ellipsis">
+					<a href="/blog/<%= blogInfo.blogId %>/info" class="ellipsis">
 						<% var title = blogInfo.blogTitle; if (title.length > 20) {%>
 							<%= title.substr(0, 20) %>...
 						<% } else { %>
@@ -70,8 +70,10 @@
 			<div>
 				<span class="h4 tag__info--title"><%= blogInfo.blogTitle %></span>
 				<div class="tag__info--follow">
-					<a href="" class="btn btn-success btn-xs" title="编辑该文章" data-toggle="tooltip" data-placement="top">
-				编辑</a>
+					<% if(user && (user.userId == blogInfo.blogUser.userId)) { %>
+						<a href="/blog/<%= blogInfo.blogTitle %>/edit" class="btn btn-success btn-xs" title="编辑该文章" data-toggle="tooltip" data-placement="top">编辑</a>
+						<a id="delInit" title="删除该文章" data-toggle="tooltip" data-placement="top" class="btn btn-success btn-xs">删除</a>
+					<% } %>
 					<a href="" class="btn btn-success btn-xs" title="已有 <%= blogInfo.blogRec %> 人推荐" data-toggle="tooltip" data-placement="top">
 					推荐 <%= blogInfo.blogRec %></a>
 					<a href="" class="btn btn-success btn-xs" title="已有 <%= blogInfo.blogPV %> 人浏览" data-toggle="tooltip" data-placement="top">
@@ -118,3 +120,37 @@
 	</div>
 </div>
 <%- include ../footer %>
+<script>
+	var BlogModel = {
+		init: function (){
+			$('#delInit').on('click', function () {
+				$.confirm({
+					animationBounce: 1.5,
+					title: '确定删除吗?',
+					icon: 'fa fa-warning',
+					content: '删除 <span class="alert-danger"><%= blogInfo.blogTitle %></span> 该文章,注意该操作不可回滚!',
+					autoClose: 'cancel|6000', // 6秒后自动关闭
+					confirmButton: '确定删除',
+					cancelButton: '取消删除',
+					confirmButtonClass: 'btn-info',
+					cancelButtonClass: 'btn-danger',
+					confirm: function () {
+						$.confirm({
+							title: '删除成功',
+							icon: 'fa fa-check',
+							cancelButton: false,
+							autoClose: 'confirm|6000', // 6秒后自动关闭
+							content: '文章 <span class="alert-danger"><%= blogInfo.blogTitle %></span> 已删除!',
+							confirmButtonClass: 'btn-success',
+							confirm: function () {
+								window.location.href = '/blog/<%= blogInfo.blogId %>/del';
+							}
+						});
+					}
+				});
+			});
+		}
+	};
+	BlogModel.init();
+	
+</script>
