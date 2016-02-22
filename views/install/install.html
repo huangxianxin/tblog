@@ -1,0 +1,52 @@
+<%- include ../header %>
+<div class="bw">
+	<div class="apa">
+		<div class="apb">
+			<h2 class="apc">安装配置</h2>
+			<h4 class="apd">首次进入系统,需要进行系统的安装以及配置,请填写以下配置信息</h4>
+		</div>
+	</div>
+	<div class="oh">
+		<div class="oi active">
+			<div class="fu db alg">
+				<div class="anv aky ala">
+					<h3 class="anw anx">配置信息</h3>
+				</div>
+				
+				<div class="fu db alg">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-4 control-label">网站名</label>
+							<div class="input-group col-sm-4">
+								<span class="input-group-addon bv abh"></span>
+								<input type="text" class="form-control" name="webName">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label">网站favicon</label>
+							<div class="input-group col-sm-4 ">
+								<span class="input-group-addon bv zd"></span>
+								<input type="file" class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label">数据库</label>
+							<div class="btn-group col-sm-4 ">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+									请选择使用数据库<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<% dbs.forEach(function (db){ %>
+										<li><a href="#"><%= db %></a></li>
+									<% }) %>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<%- include ../footer %>

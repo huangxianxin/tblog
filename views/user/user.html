@@ -1,0 +1,84 @@
+<%- include ../header %>
+<h4 class="apd">个人信息</h4>
+<h2 class="apc"><%- userInfo.userName%></h2>
+	<div class="col-xs-12 side">
+		<div class="side-ask"></div>
+			<div class="widget-box">
+				<form class="form-horizontal" method="post" id="editForm">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">用户头像</label>
+						<div class="col-sm-5">
+							<p>
+								<img class="avatar-64 avatar-square-64" src="<%- userInfo.userImageUrl%>" alt="<%- userInfo.userName %>">
+							</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">用户ID</label>
+						<div class="col-sm-5">
+							<input type="text" readonly="readonly" class="form-control" name="userId" value="<%- userInfo.userId%>" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">用户名</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" name="userName" value="<%- userInfo.userName%>" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">邮 箱</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" name="userEmail" value="<%- userInfo.userEmail%>" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">身份证</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" name="userCard" value="<%- userInfo.userCard%>" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">年 龄</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" name="userAge" value="<%- userInfo.userAge%>" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">手 机</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" name="userPhone" value="<%- userInfo.userPhone%>" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">加入时间</label>
+						<div class="col-sm-5">
+							<label class="control-label"><%- userInfo.userCreateTime %></label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label"></label>
+						<div class="col-sm-5">
+							<button type="submit" class="btn btn-success" <% if(!user || user.userId != userInfo.userId) {%> hidden <% } %>>修改用户信息</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<input id="isLogin" hidden value="<%- user %>"/>
+<%- include ../footer %>
+<script>
+	var UserApp = {
+	    init: function () {
+	        UserApp.disable()
+	    },
+		disable: function () {
+			var isLogin = $('#isLogin').val();
+			if (!isLogin) {
+				$('input').each(function(index, elem) { // 禁用所有的input标签
+					$(elem).attr('readonly', 'readonly');
+				});
+			}
+		}
+	};
+	UserApp.init();
+</script>

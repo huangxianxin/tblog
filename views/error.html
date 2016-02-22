@@ -1,0 +1,23 @@
+<%- include header %>
+<h4 class="apd">系统发生错误</h4>
+<h2 class="apc"><%= errors.errorCode %></h2>
+	<ul class="nav tr aky akt" role="tablist">
+		<li class="active" role="presentation">
+			<a role="tab" data-toggle="tab" aria-controls="error">基本信息</a>
+		</li>
+	</ul>
+	<hr class="akr">
+	<div class="oh">
+		<div role="tabpanel" class="oi active">
+			<div class="fu db alg">
+				<div class="font-center">
+					<span class="f80 bv zy"><span>
+					<h3>状态码: <%= errors.errorCode %></h3>
+					<h3>错误消息: <%= errors.errorMessage %></h3>
+					<h3>错误产生地址: <a href="<%= errors.errorUrl %>"><%= errors.errorUrl %></a></h3>
+					<h3>错误产生时间: <%= errors.errorTime %></h3>
+				</div>
+			</div>
+		</div>
+	</div>
+<%- include footer %>

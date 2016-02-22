@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<title><%= title %></title>
+<link href="/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/bootstrapValidator.min.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/font.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/toolkit-inverse.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/mditor.min.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/favicon.ico" rel="shortcut icon" />
+<link href="/animated_favicon.gif" rel="icon" type="image/gif" />
+<style>
+	body {
+		width: 1px;
+		min-width: 100%;
+		*width: 100%;
+	}
+</style>
+</head>
+<body>
+<div class="aou">
+<!-- 导航开始 -->
+<!-- 左侧 -->
+<nav class="ch">
+	<div class="aoz">
+		<ul class="nav of aox">
+			<li class="active">
+				<a href="/" title="" data-toggle="tooltip" data-placement="right" data-container="body">
+					<span class="bv abw"></span>
+					<small class="aoy sa">主页</small>
+				</a>
+			</li>
+<% if (user) { %>
+			<li>
+				<a href="/firends" title="朋友圈" data-toggle="tooltip" data-placement="right" data-container="body">
+					<span class="bv aji"></span>
+					<small class="aoy sa">朋友圈</small>
+				</a>
+			</li>
+			<li>
+				<a href="/new_blog" title="写文章" data-toggle="tooltip" data-placement="right" data-container="body">
+					<span class="bv zt"></span>
+					<small class="aoy sa">写文章</small>
+				</a>
+			</li>
+<% } %>
+		</ul>
+<% if (user) { %>
+		<div class="nav-user">
+			<ul class="nav of aox">
+				<li>
+					<a href="/user/<%- user.userName%>/info" title="我的主页" data-toggle="tooltip" data-placement="right" data-container="body">
+						<img src="<%- user.userImageUrl %>" alt="<%- user.userName %>" class="cs cn">
+					</a>
+				</li>
+				<li>
+					<a href="" title="我的消息" data-toggle="tooltip" data-placement="right" data-container="body">
+						<span class="bv we"></span>
+						<small class="aoy sa">我的消息</small>
+					</a>
+				</li>
+				<li>
+					<a href="" title="站内邮件" data-toggle="tooltip" data-placement="right" data-container="body">
+						<span class="bv adp"></span>
+						<small class="aoy sa">站内邮件</small>
+					</a>
+				</li>
+				<li>
+					<a href="" title="系统设置" data-toggle="tooltip" data-placement="right" data-container="body">
+						<span class="bv xx"></span>
+						<small class="aoy sa">系统设置</small>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+<% } %>
+</nav>
+<% if (user) { %>
+<!-- 右侧 -->
+<div class="navbar-user navbar-right">
+	<nav class="ch-right">
+		<div class="aoz">
+		<% if (user) { %>
+			<ul class="nav of aox">
+				<li>
+					<a href="/tag" title="标签" data-toggle="tooltip" data-placement="left" data-container="body">
+						<span class="bv afk"></span>
+						<small class="aoy sa">标签</small>
+					</a>
+				</li>
+				<li>
+					<a href="/help" title="帮助" data-toggle="tooltip" data-placement="left" data-container="body">
+						<span class="bv abu"></span>
+						<small class="aoy sa">帮助</small>
+					</a>
+				</li>
+	<% } %>
+			</ul>
+	<% if (user) { %>
+			<div class="nav-user">
+				<ul class="nav of aox">
+					<li>
+						<a href="/sign_out" title="退出" data-toggle="tooltip" data-placement="left" data-container="body">
+							<span class="bv aac"></span>
+							<small class="aoy sa">退出</small>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	<% } %>
+	</nav>
+</div>
+<% } else { %>
+<!-- 	<div class="navbar-user"> -->
+<!-- 		<ul class="nav tr"> -->
+<!-- 			<li> -->
+<!-- 				<a data-signup-link="true" data-toggle="modal" href="/sign_up"> -->
+<!-- 					<span class="bv uo"><span> 注册 -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 			<li> -->
+<!-- 				<a data-signin-link="true" data-toggle="modal" href="/sign_in"> -->
+<!-- 					<span class="bv adj"><span> 登录 -->
+<!-- 				</a> -->
+<!-- 			</li> -->
+<!-- 		</ul> -->
+<!-- 	</div> -->
+<div class="navbar-user navbar-right">
+	<nav class="ch-right">
+		<div class="aoz">
+			<ul class="nav of aox">
+				<li class="">
+					<a href="/sign_up" title="注册" data-toggle="tooltip" data-placement="left" data-container="body">
+						<span class="bv uo"></span>
+						<small class="aoy sa">注册</small>
+					</a>
+				</li>
+				<li>
+					<a href="/sign_in" title="登录" data-toggle="tooltip" data-placement="left" data-container="body">
+						<span class="bv ajg"></span>
+						<small class="aoy sa">登录</small>
+					</a>
+				</li>
+			</ul>
+			<div class="nav-user">
+				<ul class="nav of aox">
+					<li>
+						<a href="/help" title="帮助" data-toggle="tooltip" data-placement="left" data-container="body">
+							<span class="bv abu"></span>
+							<small class="aoy sa">帮助</small>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>
+<% } %>
+<div class="bw">
+<div class="apa">
+	<div class="apb">
+		<h4 class="apd"></h4>
+		<h2 class="apc"><img class="mr10 hidden-xs" src="http://bbs.ttxit.com/template/dean_lightcorp_150717/deancss/logo.png" alt="天天学IT"></h2>
+	</div>
+</div>
+<!-- 导航结束 -->

@@ -1,0 +1,120 @@
+<%- include ../header %>
+<div class="col-xs-12 col-md-3 side">
+	<!-- 个人信息展示 -->
+	<div class="side-ask alert">
+		<a href="/user/<%- blogInfo.blogUser.userName %>/info" class="mt10 btn btn-block">
+			<img class="avatar-64 avatar-square-64" src="<%- blogInfo.blogUser.userImageUrl %>" alt="<%- blogInfo.blogUser.userName %>">
+		</a>
+		<p class="mt10 btn btn-block" title="<%- blogInfo.blogUser.userDesc%>" data-toggle="tooltip" data-placement="top"><%- blogInfo.blogUser.userName %></p>
+		<span class="mt10"><%- blogInfo.blogUser.userDesc %></span>
+		<div class="text-center">
+			<div class="pagination">
+				<a href="" class="btn-sm btn btn-success" title="关注 <%- blogInfo.blogUser.userName %>" data-toggle="tooltip" data-placement="top">关注该用户</a>
+			</div>
+		</div>
+	</div>
+	<!-- 当前用户创建的标签 -->
+	<div class="widget-box">
+		<h2 class="h4 widget-box__title">他创建的标签</h2>
+		<ul class="taglist--inline multi">
+			<% var blogTags= blogInfo.blogTags.split(','); blogTags.forEach(function(tag) { %>
+				<li class="tagPopup">
+					<a class="tag" href="" title="<%= tag %>" data-toggle="tooltip" data-original-title="<%= tag %>"><%= tag %></a>
+				</li>
+			<% })%>
+		</ul>
+	</div>
+	<!-- 当前用户关注的人排行 -->				
+	<div class="widget-box widget-taguser">
+		<h2 class="h4 widget-box__title">他关注用户排行榜
+			<span class="taguser-catalog text-muted pull-right">
+				本月 · <a href="">全部</a>
+			</span>
+		</h2>
+		<ol class="widget-top10">
+			<li class="text-muted">
+				<img src="<%- blogInfo.blogUser.userImageUrl %>" class="avatar-24">
+					<a href="/user/<%- blogInfo.blogUser.userName %>/info" class="ellipsis">
+						<% var userName = blogInfo.blogUser.userName; if (userName.length > 15) {%>
+							<%= userName.substr(0, 15) %>...
+						<% } else { %>
+							<%= userName %>
+						<% } %>
+					</a>
+					<span class="text-muted pull-right" title="已有 66 人关注他" data-toggle="tooltip" data-placement="top">+66</span>
+			</li>
+		</ol>
+	</div>
+	<!-- 推荐文章 -->
+	<div class="widget-box widget-taguser">
+		<h2 class="h4 widget-box__title">推荐榜</h2>
+			<ol class="widget-top10">
+				<li class="text-muted">
+					<a href="/get_blog?blogId=<%= blogInfo.blogId %>" class="ellipsis">
+						<% var title = blogInfo.blogTitle; if (title.length > 20) {%>
+							<%= title.substr(0, 20) %>...
+						<% } else { %>
+							<%= title %>
+						<% } %>
+					</a>
+					<span class="text-muted pull-right" title="现已有 <%= blogInfo.blogPV%> 人浏览" data-toggle="tooltip" data-placement="top"><%= blogInfo.blogPV %></span>
+				</li>
+			</ol>
+	</div>
+</div>
+<!-- 文章内容 -->
+<div class="col-xs-12 col-md-9">
+	<!-- 文章标题及标签 -->
+	<div>
+		<section class="stream-list__item">
+			<div>
+				<span class="h4 tag__info--title"><%= blogInfo.blogTitle %></span>
+				<div class="tag__info--follow">
+					<a href="" class="btn btn-success btn-xs" title="编辑该文章" data-toggle="tooltip" data-placement="top">
+				编辑</a>
+					<a href="" class="btn btn-success btn-xs" title="已有 <%= blogInfo.blogRec %> 人推荐" data-toggle="tooltip" data-placement="top">
+					推荐 <%= blogInfo.blogRec %></a>
+					<a href="" class="btn btn-success btn-xs" title="已有 <%= blogInfo.blogPV %> 人浏览" data-toggle="tooltip" data-placement="top">
+					浏览 <%= blogInfo.blogPV %></a>
+					<a href="" class="btn btn-success btn-xs" title="已有 <%= blogInfo.blogCollect %> 人收藏" data-toggle="tooltip" data-placement="top">
+					收藏 <%= blogInfo.blogCollect %></a>
+				</div>
+			</div>
+			<div class="tag__info--desc">
+				<ul class="taglist--inline multi">
+					<% var blogTags= blogInfo.blogTags.split(','); blogTags.forEach(function(tag) { %>
+						<li class="tagPopup">
+							<a class="tag" href="" title="<%= tag %>" data-toggle="tooltip" data-original-title="<%= tag %>"><%= tag %></a>
+						</li>
+					<% })%>
+				</ul>
+			</div>
+			<div>
+				<img class="avatar-20 mr10 hidden-xs" src="<%- blogInfo.blogUser.userImageUrl %>" alt="<%= blogInfo.blogUser.userName %>">
+				<a href="/user/<%- blogInfo.blogUser.userName %>/info"><%= blogInfo.blogUser.userName %></a> 发表于
+				<span class="tag__info--desc"><%= blogInfo.blogCreateTime %></span>
+			</div>
+		</section>
+	</div>
+	<!-- 文章内容 -->
+	<div class="oh">
+		<div>
+			<section class="stream-list__item">
+				<%- blogInfo.blogContent %>
+			</section>
+		</div>
+	</div>
+	<!-- 文章页脚 -->
+	<div class="tag">
+		发表于 <span class="tag__info--desc"><%= blogInfo.blogCreateTime %></span>
+	</div>
+	<div class="text-center">
+	    <div class="pagination">
+			<a href="" class="btn btn-success btn-lg" title="已有 <%= blogInfo.blogRec %> 人推荐,推荐该文章" data-toggle="tooltip" data-placement="top">
+			推荐 <%= blogInfo.blogRec %></a>
+			<a href="" class="btn btn-default btn-lg" title="已有 <%= blogInfo.blogCollect %> 人收藏,加入收藏" data-toggle="tooltip" data-placement="top">
+			收藏 <%= blogInfo.blogCollect %></a>
+		</div>
+	</div>
+</div>
+<%- include ../footer %>

@@ -1,0 +1,57 @@
+<%- include header %>
+	<ul class="nav tr aky akt" role="tablist">
+		<li class="active" role="presentation">
+			<a href="#login" role="tab" data-toggle="tab" aria-controls="login">使用已有账户登录</a>
+		</li>
+		<li role="presentation">
+			<a href="#other" role="tab" data-toggle="tab" aria-controls="other">使用第三方登录</a>
+		</li>
+	</ul>
+	<hr class="akr">
+	<div class="oh">
+		<div role="tabpanel" class="oi active" id="login">
+			<div class="col-sm-8 col-sm-offset-4 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+				<form class="form-horizontal" method="post" id="loginForm">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">邮 箱</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" name="userEmail" placeholder="邮箱地址 adc@example.com"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">密 码</label>
+						<div class="col-sm-5">
+							<input type="password" class="form-control" name="userPassword" placeholder="密码">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-4"></div>
+						<button type="submit" class="btn btn-success" >登 录</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div role="tabpanel" class="oi" id="other">
+			<div class="col-sm-8 col-sm-offset-4 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 f30">
+				现已支持以下第三方登录
+				<ul class="auth-ul">
+					<li>
+						<a href="/users/auth/weibo" title="授权LinkedIn并登录到系统" data-toggle="tooltip" data-placement="top" data-container="body"><i class="bv adc"></i></a>
+					</li>
+					<li>
+						<a href="/users/auth/qq_connect"><i class="bv afr"></i></a>
+					</li>
+					<li>
+						<a href="/users/auth/douban"><i class="bv abf"></i></a>
+					</li>
+					<li>
+						<a href="/users/auth/google_oauth2"><i class="bv aiz"></i></a>
+					</li>
+					<li>
+						<a href="/users/auth/wechat"><i class="bv abi"></i></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<%- include footer %>
